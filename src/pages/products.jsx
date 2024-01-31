@@ -7,6 +7,7 @@ import CardProduct from "../components/Fragments/CardProduct";
 import CartTable from "../components/Fragments/CartTable";
 import { addToCart } from "../redux/slices/cartSlice";
 import { getProducts } from "../services/product.service";
+import Navbar from "../components/Layouts/Navbar";
 
 // const products = [
 //     {
@@ -32,9 +33,7 @@ const ProductsPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // const [cart, setCart] = useState([]);
-    const [totalPrice, setTotalPrice] = useState(0);
     const [products, setProducts] = useState([]);
-    const [user, setUser] = useState(null);
 
 
     const getProductsData = async () => {
@@ -47,18 +46,10 @@ const ProductsPage = () => {
 
         const token = localStorage.getItem('token') || '';
         if (!token) return navigate('login');
-        const userData = jwtDecode(token);
-        setUser(userData);
 
         // setCart(JSON.parse(localStorage.getItem('cart')) || []);
         getProductsData();
     }, []);
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        // localStorage.removeItem('password');
-        navigate('/')
-    }
 
     // const handleAddToCart = (id) => {
     //     if (cart.find(item => item.id === id)) {
@@ -77,11 +68,7 @@ const ProductsPage = () => {
     // }
     return (
         <div className="container">
-            <div className="bg-sky-800 flex justify-end items-center h-14 text-white px-2 md:px-20">
-                <p>{user?.user}</p>
-                <div className="mx-2" />
-                <Button classname="bg-slate-800 px-5 py-2" onClick={handleLogout}>Logout</Button>
-            </div>
+            <Navbar />
             <div className="flex">
                 <div className="w-8/12 flex flex-wrap justify-center bg-orange-100">
                     {
@@ -99,7 +86,7 @@ const ProductsPage = () => {
                 </div>
                 <div className="bg-sky-300 w-4/12 p-3">
                     <h2 className="text-xl font-bold ml-3 mb-3">Cart</h2>
-                    <CartTable products={products}/>
+                    <CartTable products={products} />
                 </div>
             </div>
         </div>

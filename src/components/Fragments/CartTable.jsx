@@ -26,14 +26,13 @@ const CartTable = ({ products }) => {
                 return accumulator + product.price * item.qty;
             }, 0);
             setTotalPrice(sumTotalPrice);
-            localStorage.setItem('cart', JSON.stringify(cart))
         }
     }, [cart, products]);
 
-    const handleDeleteCart = (id) => {
-        const newCart = cart.filter(item => item.id !== id);
-        localStorage.setItem('cart', JSON.stringify(newCart))
-    }
+    // const handleDeleteCart = (id) => {
+    //     const newCart = cart.filter(item => item.id !== id);
+    //     localStorage.setItem('cart', JSON.stringify(newCart))
+    // }
 
     return (
         <table className="table-auto border-separate text-left border-spacing-x-3">
