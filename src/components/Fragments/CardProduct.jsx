@@ -7,10 +7,10 @@ const CardProduct = ({children}) => {
         </div>
     )
 }
-const Header = () => {
+const Header = ({image}) => {
     return (
         <a href="#">
-            <img src="img/product1.jpg" alt="Shoe" className="h-52 w-full mx-auto bg-auto" />
+            <img src={image} alt="Shoe" className="h-52 w-full mx-auto bg-auto" />
         </a>
     )
 }

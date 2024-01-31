@@ -24,7 +24,8 @@ const LoginForm = () => {
             console.log('token',result)
         } catch (error) {
             setErrorMessage(error.response.data)
-            console.log('error',error)
+            console.log('error',error);
+            return;
         }
         navigate('/products')
     }
